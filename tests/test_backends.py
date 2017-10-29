@@ -2,9 +2,21 @@ import os
 import unittest
 import subprocess
 
-TEST_PROJECT_DIR = os.path.join(os.path.dirname(__file__), 'test_project/')
+TEST_PROJECT_DIR = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'test_project/')
+SRC_DIR = os.path.join(
+    os.path.dirname(os.path.abspath(os.path.dirname(__file__))),
+    'django_fake_database_backends')
+
 
 class MySqlTest(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cmd = 'cp -rf {0} {1}'.format(SRC_DIR, TEST_PROJECT_DIR)
+        process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+        process.wait()
+        assert process.returncode == 0
+        return super(MySqlTest, cls).setUpClass()
+
     def test_sqlgeneration_create_table(self):
         cmd = '(cd {0} && python manage.py sqlmigrate test_app 0001)'.format(TEST_PROJECT_DIR)
         process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
@@ -38,5 +50,4 @@ class MySqlTest(unittest.TestCase):
         #cmd = '(cd {0} && python manage.py runserver)'.format(TEST_PROJECT_DIR)
         #process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
         #process.wait()
-
         # TODO
