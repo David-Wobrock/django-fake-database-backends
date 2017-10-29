@@ -8,6 +8,9 @@ PROJECT_DIR = path.abspath(path.dirname(__file__))
 with open(path.join(PROJECT_DIR, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
+install_requirements = [
+    'django'
+]
 
 setup(
     name='django-fake-database-backends',
@@ -18,14 +21,17 @@ setup(
     url='https://github.com/David-Wobrock/django-fake-database-backends',
     author='David Wobrock',
     author_email='david.wobrock@gmail.com',
-    # license='',  # TODO
+    license='MIT',
 
     packages=find_packages(exclude=['tests/']),
+    install_requires=install_requirements,
 
     keywords='django database backend',
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
+        'Environment :: Web Environment',
+        'Framework :: Django',
 
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
