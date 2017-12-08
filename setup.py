@@ -12,6 +12,12 @@ install_requirements = [
     'django'
 ]
 
+test_requirements = (
+    'pytest',
+    'django',
+    'pillow'
+)
+
 setup(
     name='django-fake-database-backends',
     version='0.0.1',
@@ -25,6 +31,9 @@ setup(
 
     packages=find_packages(exclude=['tests/']),
     install_requires=install_requirements,
+    extras_require={
+        'test': test_requirements
+    },
 
     keywords='django database backend',
     classifiers=[
@@ -37,8 +46,8 @@ setup(
         'Programming Language :: Python :: 2.7',
         # TODO verify Python 3 compatible
         # 'Programming Language :: Python :: 3',
-        # 'Programming Language :: Python :: 3.3',
         # 'Programming Language :: Python :: 3.4',
         # 'Programming Language :: Python :: 3.5',
+        # 'Programming Language :: Python :: 3.6',
     ]
 )
