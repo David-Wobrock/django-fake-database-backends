@@ -9,12 +9,12 @@ with open(path.join(PROJECT_DIR, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 install_requirements = [
-    'django'
+    'django>=1.9'
 ]
 
 test_requirements = (
     'pytest',
-    'django',
+    'tox',
     'pillow'
 )
 
@@ -41,13 +41,17 @@ setup(
         'Intended Audience :: Developers',
         'Environment :: Web Environment',
         'Framework :: Django',
+        'Framework :: Django :: 1.9',
+        'Framework :: Django :: 1.10',
+        'Framework :: Django :: 1.11',
+        'Framework :: Django :: 2.0',
 
+        'Programming Language :: Python',
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
-        # TODO verify Python 3 compatible
-        # 'Programming Language :: Python :: 3',
-        # 'Programming Language :: Python :: 3.4',
-        # 'Programming Language :: Python :: 3.5',
-        # 'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
     ]
 )

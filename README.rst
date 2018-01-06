@@ -48,8 +48,6 @@ More will come in the future.
 Tests
 -----
 
-The test suite uses `pytest`_ and can be invoked using::
+The test suite uses `tox`_ and can be invoked using::
 
-    py.test
-
-.. _`pytest`: pytest.org/latest/
+    tox

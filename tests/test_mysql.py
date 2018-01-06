@@ -52,7 +52,7 @@ COMMIT;
 """
         self._assert_sqlmigrate_result(
             project_path=TEST_PROJECT_DIR,
-            migration_num=migration_num, 
+            migration_num=migration_num,
             expected_migration_content=expected_sql)
 
     def test_sqlgeneration_add_not_null_field_0002(self):
@@ -69,7 +69,7 @@ COMMIT;
 """
         self._assert_sqlmigrate_result(
             project_path=TEST_PROJECT_DIR,
-            migration_num=migration_num, 
+            migration_num=migration_num,
             expected_migration_content=expected_sql)
 
     def test_sqlgeneration_add_not_null_field_preserve_default_0003(self):
@@ -86,7 +86,7 @@ COMMIT;
 """
         self._assert_sqlmigrate_result(
             project_path=TEST_PROJECT_DIR,
-            migration_num=migration_num, 
+            migration_num=migration_num,
             expected_migration_content=expected_sql)
 
     def test_sqlgeneration_drop_field_0004(self):
@@ -102,7 +102,7 @@ COMMIT;
 """
         self._assert_sqlmigrate_result(
             project_path=TEST_PROJECT_DIR,
-            migration_num=migration_num, 
+            migration_num=migration_num,
             expected_migration_content=expected_sql)
 
     def test_sqlgeneration_add_lots_of_fields_0005(self):
@@ -194,7 +194,7 @@ COMMIT;
 """
         self._assert_sqlmigrate_result(
             project_path=TEST_PROJECT_DIR,
-            migration_num=migration_num, 
+            migration_num=migration_num,
             expected_migration_content=expected_sql)
 
     def test_sqlgeneration_add_unique_together_0006(self):
@@ -211,7 +211,7 @@ COMMIT;
 """
         self._assert_sqlmigrate_result(
             project_path=TEST_PROJECT_DIR,
-            migration_num=migration_num, 
+            migration_num=migration_num,
             expected_migration_content=expected_sql)
 
 
@@ -244,7 +244,7 @@ COMMIT;
 """
         self._assert_sqlmigrate_result(
             project_path=TEST_PROJECT_DIR,
-            migration_num=migration_num, 
+            migration_num=migration_num,
             expected_migration_content=expected_sql)
 
     @unittest.skip("todo")
@@ -254,7 +254,7 @@ COMMIT;
         self.fail('is missing')
         self._assert_sqlmigrate_result(
             project_path=TEST_PROJECT_DIR,
-            migration_num=migration_num, 
+            migration_num=migration_num,
             expected_migration_content=expected_sql)
 
     def test_sqlgeneration_create_index_0010(self):
@@ -270,7 +270,7 @@ COMMIT;
 """
         self._assert_sqlmigrate_result(
             project_path=TEST_PROJECT_DIR,
-            migration_num=migration_num, 
+            migration_num=migration_num,
             expected_migration_content=expected_sql)
 
     def test_sqlgeneration_drop_index_0011(self):
@@ -285,7 +285,7 @@ COMMIT;
 """
         self._assert_sqlmigrate_result(
             project_path=TEST_PROJECT_DIR,
-            migration_num=migration_num, 
+            migration_num=migration_num,
             expected_migration_content=expected_sql)
 
     @unittest.skip("todo")
@@ -295,5 +295,5 @@ COMMIT;
         self.fail('is missing')
         self._assert_sqlmigrate_result(
             project_path=TEST_PROJECT_DIR,
-            migration_num=migration_num, 
+            migration_num=migration_num,
             expected_migration_content=expected_sql)
