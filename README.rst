@@ -4,6 +4,9 @@ django-fake-database-backends
 .. image:: https://travis-ci.org/David-Wobrock/django-fake-database-backends.svg?branch=master
     :target: https://travis-ci.org/David-Wobrock/django-fake-database-backends
 
+.. image:: https://img.shields.io/pypi/v/django-fake-database-backends.svg
+    :target: https://pypi.python.org/pypi/django-fake-database-backends/
+
 Motivations
 -----------
 
