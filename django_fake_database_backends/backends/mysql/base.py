@@ -65,3 +65,8 @@ class DatabaseWrapper(BaseDatabaseWrapper):
         'TimeField': 'time',
         'UUIDField': 'char(32)'
     }
+
+    _limited_data_types = (
+        'tinyblob', 'blob', 'mediumblob', 'longblob', 'tinytext', 'text',
+        'mediumtext', 'longtext', 'json',
+    )

@@ -15,7 +15,7 @@ class MySqlTest(unittest.TestCase):
 
         self.assertEqual(process.returncode, 0)
         self.assertEqual(
-            ''.join(process.stdout.readlines()).replace('\n', ''),
+            ''.join(map(lambda x: x.decode('utf-8'), process.stdout.readlines())).replace('\n', ''),
             expected_migration_content.replace('\n', ''))
 
     def _assert_sqlmigrate_fails(self, project_path, app_name='test_app', migration_num='0001'):
@@ -33,11 +33,11 @@ class MySqlTest(unittest.TestCase):
 
         self.assertNotEqual(process.returncode, 0)
 
-    #def test_show_warning_runserver(self):
-        #cmd = '(cd {0} && python manage.py runserver)'.format(TEST_PROJECT_DIR)
-        #process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
-        #process.wait()
-        # TODO
+    @unittest.skip("todo")
+    def test_show_warning_runserver(self):
+        cmd = '(cd {0} && python manage.py runserver)'.format(TEST_PROJECT_DIR)
+        process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+        process.wait()
 
     def test_sqlgeneration_create_table_0001(self):
         migration_num = '0001'
@@ -205,7 +205,7 @@ BEGIN;
 --
 -- Alter unique_together for a (1 constraint(s))
 --
-ALTER TABLE `test_app_a` ADD CONSTRAINT `test_app_a_null_field_new_not_null_field_470b5a0c_uniq` UNIQUE (`null_field`, `new_not_null_field`);
+ALTER TABLE `test_app_a` ADD CONSTRAINT test_app_a_null_field_new_not_null_field_470b5a0c_uniq UNIQUE (`null_field`, `new_not_null_field`);
 
 COMMIT;
 """
@@ -239,7 +239,7 @@ ALTER TABLE `test_app_newclass` ADD CONSTRAINT `test_app_newclass_myafkprotect_i
 ALTER TABLE `test_app_newclass` ADD CONSTRAINT `test_app_newclass_myaname_id_032df7a2_fk_test_app_a_id` FOREIGN KEY (`myaname_id`) REFERENCES `test_app_a` (`id`);
 ALTER TABLE `test_app_a_mynewclass` ADD CONSTRAINT `test_app_a_mynewclass_a_id_651aa63d_fk_test_app_a_id` FOREIGN KEY (`a_id`) REFERENCES `test_app_a` (`id`);
 ALTER TABLE `test_app_a_mynewclass` ADD CONSTRAINT `test_app_a_mynewclas_newclass_id_f67c181f_fk_test_app_` FOREIGN KEY (`newclass_id`) REFERENCES `test_app_newclass` (`id`);
-ALTER TABLE `test_app_a_mynewclass` ADD CONSTRAINT `test_app_a_mynewclass_a_id_newclass_id_2cdacc51_uniq` UNIQUE (`a_id`, `newclass_id`);
+ALTER TABLE `test_app_a_mynewclass` ADD CONSTRAINT test_app_a_mynewclass_a_id_newclass_id_2cdacc51_uniq UNIQUE (`a_id`, `newclass_id`);
 COMMIT;
 """
         self._assert_sqlmigrate_result(
@@ -247,14 +247,15 @@ COMMIT;
             migration_num=migration_num, 
             expected_migration_content=expected_sql)
 
-    """def test_sqlgeneration_TODO_0009(self):
+    @unittest.skip("todo")
+    def test_sqlgeneration_TODO_0009(self):
         migration_num = '0009'
         expected_sql = ""
         self.fail('is missing')
         self._assert_sqlmigrate_result(
             project_path=TEST_PROJECT_DIR,
             migration_num=migration_num, 
-            expected_migration_content=expected_sql)"""
+            expected_migration_content=expected_sql)
 
     def test_sqlgeneration_create_index_0010(self):
         migration_num = '0010'
@@ -287,11 +288,12 @@ COMMIT;
             migration_num=migration_num, 
             expected_migration_content=expected_sql)
 
-    """def test_sqlgeneration_TODO_0012(self):
+    @unittest.skip("todo")
+    def test_sqlgeneration_TODO_0012(self):
         migration_num = '0012'
         expected_sql = ""
         self.fail('is missing')
         self._assert_sqlmigrate_result(
             project_path=TEST_PROJECT_DIR,
             migration_num=migration_num, 
-            expected_migration_content=expected_sql)"""
+            expected_migration_content=expected_sql)
