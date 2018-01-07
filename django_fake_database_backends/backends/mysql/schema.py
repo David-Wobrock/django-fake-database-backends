@@ -22,7 +22,10 @@ class DatabaseSchemaEditor(BaseDatabaseSchemaEditor):
         return value
 
     def _field_should_be_indexed(self, model, field):
-        create_index = super(DatabaseSchemaEditor, self)._field_should_be_indexed(model, field)
-        if create_index and field.get_internal_type() == 'ForeignKey' and field.db_constraint:
+        create_index = super(
+            DatabaseSchemaEditor, self)._field_should_be_indexed(model, field)
+        if (create_index and
+           field.get_internal_type() == 'ForeignKey' and
+           field.db_constraint):
             return False
         return create_index
