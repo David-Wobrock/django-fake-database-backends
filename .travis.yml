@@ -33,6 +33,9 @@ matrix:
     - python: 3.6
       env: TOXENV=py36-django20
 
+    - python: 3.6
+      env: TOXENV=lint
+
 install:
   - pip install tox
 
