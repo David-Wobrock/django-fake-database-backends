@@ -11,11 +11,11 @@ class MySqlTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         super(MySqlTest, cls).setUpClass()
-        cls.activate_venv_cmd = '&& source {0}/bin/activate'.format(sys.prefix) if hasattr(sys, 'real_prefix') else ''
+        cls.python_exec = '{0}/bin/python'.format(sys.prefix) if hasattr(sys, 'real_prefix') else 'python'
 
     def _assert_sqlmigrate_result(self, project_path, app_name='test_app', migration_num='0001', expected_migration_content=None):
         assert expected_migration_content is not None
-        cmd = '(cd {0} {1} && python manage.py sqlmigrate {2} {3})'.format(project_path, self.activate_venv_cmd, app_name, migration_num)
+        cmd = '(cd {0} && {1} manage.py sqlmigrate {2} {3})'.format(project_path, self.python_exec, app_name, migration_num)
         process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
         process.wait()
 
@@ -25,7 +25,7 @@ class MySqlTest(unittest.TestCase):
             expected_migration_content.replace('\n', ''))
 
     def _assert_sqlmigrate_fails(self, project_path, app_name='test_app', migration_num='0001'):
-        cmd = '(cd {0} {1} && python manage.py sqlmigrate {2} {3})'.format(project_path, self.activate_venv_cmd, app_name, migration_num)
+        cmd = '(cd {0} && {1} manage.py sqlmigrate {2} {3})'.format(project_path, self.python_exec, app_name, migration_num)
         process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
         process.wait()
 
@@ -33,7 +33,7 @@ class MySqlTest(unittest.TestCase):
 
 
     def test_cannot_migrate(self):
-        cmd = '(cd {0} {1} && python manage.py migrate)'.format(TEST_PROJECT_DIR, self.activate_venv_cmd)
+        cmd = '(cd {0} && {1} manage.py migrate)'.format(TEST_PROJECT_DIR, self.python_exec)
         process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
         process.wait()
 
@@ -41,7 +41,7 @@ class MySqlTest(unittest.TestCase):
 
     @unittest.skip("todo")
     def test_show_warning_runserver(self):
-        cmd = '(cd {0} && python manage.py runserver)'.format(TEST_PROJECT_DIR)
+        cmd = '(cd {0} && {1} manage.py runserver)'.format(TEST_PROJECT_DIR, self.python_exec)
         process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
         process.wait()
 
