@@ -7,3 +7,6 @@ class DatabaseIntrospection(BaseDatabaseIntrospection):
 
     def get_storage_engine(self, *args, **kwargs):
         return ''
+
+    def get_constraints(self, *args, **kwargs):
+        return {}

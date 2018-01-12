@@ -15,6 +15,17 @@ class DatabaseSchemaEditor(BaseDatabaseSchemaEditor):
         # If not collecting the sql, do not execute
 
     def quote_value(self, value):
+        if type(value) == bool:
+            return str(int(value))
         # TODO escape correctly all values for mysql
         # Preferably without having the mysql client as dep
         return value
+
+    def _field_should_be_indexed(self, model, field):
+        create_index = super(
+            DatabaseSchemaEditor, self)._field_should_be_indexed(model, field)
+        if (create_index and
+           field.get_internal_type() == 'ForeignKey' and
+           field.db_constraint):
+            return False
+        return create_index

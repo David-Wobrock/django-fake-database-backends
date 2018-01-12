@@ -1,6 +1,11 @@
 =============================
 django-fake-database-backends
 =============================
+.. image:: https://travis-ci.org/David-Wobrock/django-fake-database-backends.svg?branch=master
+    :target: https://travis-ci.org/David-Wobrock/django-fake-database-backends
+
+.. image:: https://img.shields.io/pypi/v/django-fake-database-backends.svg
+    :target: https://pypi.python.org/pypi/django-fake-database-backends/
 
 Motivations
 -----------
@@ -43,8 +48,6 @@ More will come in the future.
 Tests
 -----
 
-The test suite uses `pytest`_ and can be invoked using::
+The test suite uses `tox`_ and can be invoked using::
 
-    py.test
-
-.. _`pytest`: pytest.org/latest/
+    tox

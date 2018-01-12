@@ -1,4 +1,5 @@
-from django.db.backends.base.validation import BaseDatabaseValidation
+from django.db.backends.mysql.validation import \
+    DatabaseValidation as BaseDatabaseValidation
 
 
 class DatabaseValidation(BaseDatabaseValidation):

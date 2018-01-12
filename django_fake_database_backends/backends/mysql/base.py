@@ -23,6 +23,15 @@ class DatabaseWrapper(BaseDatabaseWrapper):
     ops_class = DatabaseOperations
     validation_class = DatabaseValidation
 
+    def __init__(self, *args, **kwargs):
+        super(DatabaseWrapper, self).__init__(*args, **kwargs)
+        self.client = self.client_class(self)
+        self.creation = self.creation_class(self)
+        self.features = self.features_class(self)
+        self.introspection = self.introspection_class(self)
+        self.ops = self.ops_class(self)
+        self.validation = self.validation_class(self)
+
     def get_connection_params(self, *args, **kwargs):
         return {}
 
@@ -35,7 +44,7 @@ class DatabaseWrapper(BaseDatabaseWrapper):
     def init_connection_state(self, *args, **kwargs):
         pass
 
-    def create_cursor(self, name):
+    def create_cursor(self, name=None):
         return Cursor()
 
     data_types = {
@@ -65,3 +74,8 @@ class DatabaseWrapper(BaseDatabaseWrapper):
         'TimeField': 'time',
         'UUIDField': 'char(32)'
     }
+
+    _limited_data_types = (
+        'tinyblob', 'blob', 'mediumblob', 'longblob', 'tinytext', 'text',
+        'mediumtext', 'longtext', 'json',
+    )
