@@ -22,7 +22,7 @@ setup(
     name='django-fake-database-backends',
     version='0.0.2',
 
-    description='Fake django database backends to generate sql without real database',
+    description='Fake django database backends to generate sql without a real database',
     long_description=long_description,
     url='https://github.com/David-Wobrock/django-fake-database-backends',
     author='David Wobrock',
