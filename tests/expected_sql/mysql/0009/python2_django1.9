@@ -1,0 +1,8 @@
+BEGIN;
+--
+-- Add field characters to secondobject
+--
+ALTER TABLE `test_app_secondobject` ADD COLUMN `characters` varchar(512) NULL;
+ALTER TABLE `test_app_secondobject` ALTER COLUMN `characters` DROP DEFAULT;
+
+COMMIT;

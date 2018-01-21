@@ -45,3 +45,28 @@ class MySqlTest(FakeBackendsTestCase):
         app_name = 'test_app'
         migration_num = '0005'
         self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_big_int_0006(self):
+        app_name = 'test_app'
+        migration_num = '0006'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_binary_0007(self):
+        app_name = 'test_app'
+        migration_num = '0007'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_boolean_0008(self):
+        app_name = 'test_app'
+        migration_num = '0008'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_char_0009(self):
+        app_name = 'test_app'
+        migration_num = '0009'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_date_0010(self):
+        app_name = 'test_app'
+        migration_num = '0010'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
