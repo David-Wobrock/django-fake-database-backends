@@ -1,0 +1,7 @@
+BEGIN;
+--
+-- Add field dec to secondobject
+--
+ALTER TABLE `test_app_secondobject` ADD COLUMN `dec` numeric(30, 20) NULL;
+ALTER TABLE `test_app_secondobject` ALTER COLUMN `dec` DROP DEFAULT;
+COMMIT;

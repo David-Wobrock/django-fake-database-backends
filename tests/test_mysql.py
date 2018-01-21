@@ -70,3 +70,93 @@ class MySqlTest(FakeBackendsTestCase):
         app_name = 'test_app'
         migration_num = '0010'
         self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_datetime_0011(self):
+        app_name = 'test_app'
+        migration_num = '0011'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_decimal_0012(self):
+        app_name = 'test_app'
+        migration_num = '0012'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_duration_0013(self):
+        app_name = 'test_app'
+        migration_num = '0013'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_email_0014(self):
+        app_name = 'test_app'
+        migration_num = '0014'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_file_0015(self):
+        app_name = 'test_app'
+        migration_num = '0015'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_filepath_0016(self):
+        app_name = 'test_app'
+        migration_num = '0016'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_float_0017(self):
+        app_name = 'test_app'
+        migration_num = '0017'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_generic_ip_0018(self):
+        app_name = 'test_app'
+        migration_num = '0018'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_null_bool_0019(self):
+        app_name = 'test_app'
+        migration_num = '0019'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_pos_int_0020(self):
+        app_name = 'test_app'
+        migration_num = '0020'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_small_pos_int_0021(self):
+        app_name = 'test_app'
+        migration_num = '0021'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_slug_0022(self):
+        app_name = 'test_app'
+        migration_num = '0022'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_small_int_0023(self):
+        app_name = 'test_app'
+        migration_num = '0023'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_text_0024(self):
+        app_name = 'test_app'
+        migration_num = '0024'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_time_0025(self):
+        app_name = 'test_app'
+        migration_num = '0025'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_url_0026(self):
+        app_name = 'test_app'
+        migration_num = '0026'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_uuid_0027(self):
+        app_name = 'test_app'
+        migration_num = '0027'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_float_0028(self):
+        app_name = 'test_app'
+        migration_num = '0028'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)

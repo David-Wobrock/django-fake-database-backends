@@ -18,6 +18,12 @@ class DatabaseSchemaEditor(BaseDatabaseSchemaEditor):
     def quote_value(self, value):
         if type(value) == bool:
             return str(int(value))
+        if type(value) == int:
+            return value
+        if type(value) == float:
+            if value % 1 == .0:
+                return int(value)
+            return value
         # TODO escape correctly all values for mysql
         # Preferably without having the mysql client as dep
         if sys.version_info.major == 3:
