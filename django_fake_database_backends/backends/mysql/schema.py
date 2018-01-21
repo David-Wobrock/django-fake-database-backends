@@ -1,5 +1,6 @@
 from django.db.backends.mysql.schema import DatabaseSchemaEditor \
     as BaseDatabaseSchemaEditor
+import sys
 
 
 class DatabaseSchemaEditor(BaseDatabaseSchemaEditor):
@@ -19,7 +20,9 @@ class DatabaseSchemaEditor(BaseDatabaseSchemaEditor):
             return str(int(value))
         # TODO escape correctly all values for mysql
         # Preferably without having the mysql client as dep
-        return value
+        if sys.version_info.major == 3:
+            return "b\"'{0}'\"".format(value)
+        return "'{0}'".format(value)
 
     def _field_should_be_indexed(self, model, field):
         create_index = super(

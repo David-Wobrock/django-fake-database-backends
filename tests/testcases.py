@@ -23,14 +23,16 @@ class FakeBackendsTestCase(unittest.TestCase):
     def setUpClass(cls):
         super(FakeBackendsTestCase, cls).setUpClass()
         cls.python_exec = '{0}/bin/python'.format(sys.prefix) if hasattr(sys, 'real_prefix') else 'python'
+        cls.python_version = sys.version_info.major
         import django
         cls.django_version = '{0}.{1}'.format(*(django.VERSION[:2]))
 
     def _expected_sql(self, migration_num):
-        path = '{0}/{1}/{2}/django{3}'.format(
+        path = '{0}/{1}/{2}/python{3}_django{4}'.format(
             self.EXPECTED_SQL_DIR,
             self.database_backend,
             migration_num,
+            self.python_version,
             self.django_version)
 
         with open(path, 'r') as f:
