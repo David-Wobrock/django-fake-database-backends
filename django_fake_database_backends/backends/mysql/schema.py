@@ -1,5 +1,6 @@
 from django.db.backends.mysql.schema import DatabaseSchemaEditor \
     as BaseDatabaseSchemaEditor
+import datetime
 import sys
 
 
@@ -16,19 +17,30 @@ class DatabaseSchemaEditor(BaseDatabaseSchemaEditor):
         # If not collecting the sql, do not execute
 
     def quote_value(self, value):
-        if type(value) == bool:
+        if isinstance(value, bool):
             return str(int(value))
-        if type(value) == int:
+        if isinstance(value, int):
             return value
-        if type(value) == float:
+        if isinstance(value, float):
             if value % 1 == .0:
                 return int(value)
             return value
-        # TODO escape correctly all values for mysql
-        # Preferably without having the mysql client as dep
+        if self._is_date_or_time(value) and sys.version_info.major == 2:
+            return value
         if sys.version_info.major == 3:
             return "b\"'{0}'\"".format(value)
         return "'{0}'".format(value)
+
+    def _is_date_or_time(self, value):
+        try:
+            datetime.datetime.strptime(value, '%H:%M:%S')
+            return True
+        except Exception:
+            try:
+                datetime.datetime.strptime(value, '%Y-%m-%d')
+                return True
+            except Exception:
+                return False
 
     def _field_should_be_indexed(self, model, field):
         create_index = super(
