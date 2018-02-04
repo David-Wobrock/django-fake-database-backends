@@ -5,6 +5,11 @@ import datetime
 
 class FirstObject(models.Model):
     name = models.IntegerField(null=False)
+    obj = models.ForeignKey('SecondObject', on_delete=models.CASCADE, null=True, db_index=False)
+    fk_protect = models.ForeignKey('self', on_delete=models.PROTECT, null=True)
+    fk_set_null = models.ForeignKey('SecondObject', on_delete=models.SET_NULL, null=True, related_name='theotherfield')
+    fk_do_nothing = models.ForeignKey('SecondObject', on_delete=models.DO_NOTHING, null=True, related_name='donothing')
+    one2one = models.ForeignKey('SecondObject', on_delete=models.CASCADE, null=True, related_name='+')
 
 
 class SecondObject(models.Model):
@@ -31,6 +36,7 @@ class SecondObject(models.Model):
     url = models.URLField(null=True)
     uuid = models.UUIDField(null=True)
     floating_second = models.FloatField(default=5.673)
+    many2many = models.ManyToManyField(FirstObject)
 
     class Meta:
         unique_together = (('big_int', 'floating'))

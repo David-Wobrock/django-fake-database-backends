@@ -220,3 +220,38 @@ class MySqlTest(FakeBackendsTestCase):
         app_name = 'test_app'
         migration_num = '0040'
         self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_fk_cascade_0041(self):
+        app_name = 'test_app'
+        migration_num = '0041'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_remove_fk_index_0042(self):
+        app_name = 'test_app'
+        migration_num = '0042'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_fk_protect_0043(self):
+        app_name = 'test_app'
+        migration_num = '0043'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_fk_set_null_0044(self):
+        app_name = 'test_app'
+        migration_num = '0044'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_fk_do_nothing_0045(self):
+        app_name = 'test_app'
+        migration_num = '0045'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_one2one_0046(self):
+        app_name = 'test_app'
+        migration_num = '0046'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_many2many_0047(self):
+        app_name = 'test_app'
+        migration_num = '0047'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
