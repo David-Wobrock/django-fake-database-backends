@@ -1,0 +1,6 @@
+BEGIN;
+--
+-- Alter field uuid on secondobject
+--
+CREATE INDEX `test_app_secondobject_uuid_71a86c0b_uniq` ON `test_app_secondobject` (`uuid`);
+COMMIT;

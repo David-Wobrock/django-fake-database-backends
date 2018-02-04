@@ -160,3 +160,63 @@ class MySqlTest(FakeBackendsTestCase):
         app_name = 'test_app'
         migration_num = '0028'
         self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_unique_together_0029(self):
+        app_name = 'test_app'
+        migration_num = '0029'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_change_field_name_0030(self):
+        app_name = 'test_app'
+        migration_num = '0030'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_field_index_0031(self):
+        app_name = 'test_app'
+        migration_num = '0031'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_drop_field_index_0032(self):
+        app_name = 'test_app'
+        migration_num = '0032'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_unique_on_field_0033(self):
+        app_name = 'test_app'
+        migration_num = '0033'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_drop_unique_on_field_0034(self):
+        app_name = 'test_app'
+        migration_num = '0034'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_add_unique_for_date_0035(self):
+        app_name = 'test_app'
+        migration_num = '0035'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_drop_unique_for_date_0036(self):
+        app_name = 'test_app'
+        migration_num = '0036'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_thirdobject_with_pk_0037(self):
+        app_name = 'test_app'
+        migration_num = '0037'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_rename_table_0038(self):
+        app_name = 'test_app'
+        migration_num = '0038'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_rename_field_0039(self):
+        app_name = 'test_app'
+        migration_num = '0039'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
+
+    def test_fake_backend_drop_field_0040(self):
+        app_name = 'test_app'
+        migration_num = '0040'
+        self.assert_sql(app_name=app_name, migration_num=migration_num)
