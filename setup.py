@@ -9,7 +9,7 @@ with open(path.join(PROJECT_DIR, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 install_requirements = [
-    'django>=1.9'
+    'django>=1.11'
 ]
 
 test_requirements = (
@@ -35,14 +35,12 @@ setup(
         'test': test_requirements
     },
 
-    keywords='django database backend',
+    keywords='django database backend sqlmigrate',
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
         'Environment :: Web Environment',
         'Framework :: Django',
-        'Framework :: Django :: 1.9',
-        'Framework :: Django :: 1.10',
         'Framework :: Django :: 1.11',
         'Framework :: Django :: 2.0',
 

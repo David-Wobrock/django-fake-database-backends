@@ -57,7 +57,9 @@ class FakeBackendsTestCase(unittest.TestCase):
 
         expected_sql = ''.join(expected_sql).replace('\n', '')
         fake_backend_sql = ''.join(fake_backend_sql).replace('\n',  '')
+        print('*** Expected output ***')
         print(expected_sql)
+        print('*** Gotten output ***')
         print(fake_backend_sql)
 
         self.assertEqual(expected_sql, fake_backend_sql)
