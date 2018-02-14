@@ -1,0 +1,7 @@
+BEGIN;
+--
+-- Alter field mail on secondobject
+--
+ALTER TABLE `test_app_secondobject` CHANGE `mail` `email_address` varchar(254) NOT NULL;
+
+COMMIT;

@@ -1,0 +1,9 @@
+BEGIN;
+--
+-- Alter field obj on firstobject
+--
+ALTER TABLE `test_app_firstobject` DROP FOREIGN KEY `test_app_firstobject_obj_id_6b18a2db_fk_test_app_secondobject_id`;
+DROP INDEX `test_app_firstobject_obj_id_6b18a2db_fk_test_app_secondobject_id` ON `test_app_firstobject`;
+ALTER TABLE `test_app_firstobject` ADD CONSTRAINT `test_app_firstobject_obj_id_6b18a2db_fk_test_app_secondobject_id` FOREIGN KEY (`obj_id`) REFERENCES `test_app_secondobject` (`id`);
+
+COMMIT;

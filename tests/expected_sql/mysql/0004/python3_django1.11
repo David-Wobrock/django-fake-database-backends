@@ -1,0 +1,6 @@
+BEGIN;
+--
+-- Remove field code from secondobject
+--
+ALTER TABLE `test_app_secondobject` DROP COLUMN `code`;
+COMMIT;

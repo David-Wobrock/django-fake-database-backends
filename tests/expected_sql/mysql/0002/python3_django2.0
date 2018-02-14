@@ -1,0 +1,6 @@
+BEGIN;
+--
+-- Create model SecondObject
+--
+CREATE TABLE `test_app_secondobject` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `code` integer NOT NULL);
+COMMIT;
