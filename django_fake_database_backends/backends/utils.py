@@ -5,7 +5,8 @@ def split_identifier(identifier):
     by a namespace.
     """
     try:
-        from django.db.backends.utils import split_identifier as django_split_identifier
+        from django.db.backends.utils import \
+            split_identifier as django_split_identifier
         return django_split_identifier(identifier)
     except ImportError:
         try:

@@ -60,15 +60,16 @@ class DatabaseSchemaEditor(BaseDatabaseSchemaEditor):
                 self.connection.introspection.column_name_converter(name)
                 for name in column_names
             ]
-        with self.connection.cursor() as cursor:
-            constraints = self.connection.introspection.get_constraints(model)
+
+        constraints = self.connection.introspection.get_constraints(model)
 
         result = []
         for name, infodict in constraints.items():
             if column_names is None or column_names == infodict['columns']:
                 if unique is not None and infodict['unique'] != unique:
                     continue
-                if primary_key is not None and infodict['primary_key'] != primary_key:
+                if primary_key is not None and \
+                        infodict['primary_key'] != primary_key:
                     continue
                 if index is not None and infodict['index'] != index:
                     continue
@@ -77,6 +78,6 @@ class DatabaseSchemaEditor(BaseDatabaseSchemaEditor):
                 if foreign_key is not None and not infodict['foreign_key']:
                     continue
                 if type_ is not None and infodict['type'] != type_:
-                   continue
+                    continue
                 result.append(name)
         return result

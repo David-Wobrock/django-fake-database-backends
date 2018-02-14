@@ -24,12 +24,15 @@ class DatabaseIntrospection(BaseDatabaseIntrospection):
             if has_index:
                 columns = [field.column]  # TODO handle unique together
                 suffix = '_fk_{0}_{1}'.format(
-                    split_identifier(field.target_field.model._meta.db_table)[1],
+                    split_identifier(
+                        field.target_field.model._meta.db_table)[1],
                     field.target_field.column) if is_fk else ''
-                constraint_name = self.connection.schema_editor()._create_index_name(
-                    model._meta.db_table if django.VERSION[0] != 1 else model,
-                    columns,
-                    suffix)
+                constraint_name = \
+                    self.connection.schema_editor()._create_index_name(
+                        model._meta.db_table if
+                        django.VERSION[0] != 1 else model,
+                        columns,
+                        suffix)
 
                 constraints[constraint_name] = {
                     'columns': columns,
