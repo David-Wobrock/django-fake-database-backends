@@ -40,8 +40,8 @@ class FakeBackendsTestCase(unittest.TestCase):
         return all_lines
 
     def _execute_sqlmigrate(self, app_name, migration_num):
-        sqlmigrate_cmd = '(cd {0} && {1} manage.py sqlmigrate {2} {3})'.format(
-            self.TEST_PROJECT_DIR, self.python_exec, app_name, migration_num)
+        sqlmigrate_cmd = '(cd {0} && {1} manage.py sqlmigrate {2} {3} --database {4})'.format(
+            self.TEST_PROJECT_DIR, self.python_exec, app_name, migration_num, self.database_backend)
 
         process = subprocess.Popen(
             sqlmigrate_cmd,

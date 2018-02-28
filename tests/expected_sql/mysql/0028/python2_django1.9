@@ -1,8 +1,0 @@
-BEGIN;
---
--- Add field floating_second to secondobject
---
-ALTER TABLE `test_app_secondobject` ADD COLUMN `floating_second` double precision DEFAULT 5.673 NOT NULL;
-ALTER TABLE `test_app_secondobject` ALTER COLUMN `floating_second` DROP DEFAULT;
-
-COMMIT;

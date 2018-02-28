@@ -1,0 +1,10 @@
+BEGIN;
+--
+-- Add field fk_protect to firstobject
+--
+ALTER TABLE "test_app_firstobject" RENAME TO "test_app_firstobject__old";
+CREATE TABLE "test_app_firstobject" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "fk_protect_id" integer NULL REFERENCES "test_app_firstobject" ("id"), "name" integer NOT NULL, "obj_id" integer NULL REFERENCES "test_app_secondobject" ("id"));
+INSERT INTO "test_app_firstobject" ("obj_id", "id", "fk_protect_id", "name") SELECT "obj_id", "id", NULL, "name" FROM "test_app_firstobject__old";
+DROP TABLE "test_app_firstobject__old";
+CREATE INDEX "test_app_firstobject_fk_protect_id_45d8a322" ON "test_app_firstobject" ("fk_protect_id");
+COMMIT;

@@ -1,9 +1,0 @@
-BEGIN;
---
--- Add field fk_set_null to firstobject
---
-ALTER TABLE `test_app_firstobject` ADD COLUMN `fk_set_null_id` integer NULL;
-ALTER TABLE `test_app_firstobject` ALTER COLUMN `fk_set_null_id` DROP DEFAULT;
-CREATE INDEX `test_app_firstobject_ac851e31` ON `test_app_firstobject` (`fk_set_null_id`);
-ALTER TABLE `test_app_firstobject` ADD CONSTRAINT `test_app_fir_fk_set_null_id_cacfeedb_fk_test_app_secondobject_id` FOREIGN KEY (`fk_set_null_id`) REFERENCES `test_app_secondobject` (`id`);
-COMMIT;

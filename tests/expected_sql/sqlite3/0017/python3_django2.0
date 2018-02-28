@@ -1,0 +1,9 @@
+BEGIN;
+--
+-- Add field floating to secondobject
+--
+ALTER TABLE "test_app_secondobject" RENAME TO "test_app_secondobject__old";
+CREATE TABLE "test_app_secondobject" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "floating" real NOT NULL, "big_int" bigint NULL, "binary" BLOB NULL, "boolean" bool NOT NULL, "characters" varchar(512) NULL, "current_date" date NOT NULL, "datetime_f" datetime NULL, "dec" decimal NULL, "elapsed" bigint NULL, "mail" varchar(254) NOT NULL, "attachments" varchar(100) NULL, "filepath" varchar(100) NULL);
+INSERT INTO "test_app_secondobject" ("binary", "boolean", "mail", "big_int", "datetime_f", "floating", "attachments", "dec", "characters", "current_date", "id", "elapsed", "filepath") SELECT "binary", "boolean", "mail", "big_int", "datetime_f", 0.0, "attachments", "dec", "characters", "current_date", "id", "elapsed", "filepath" FROM "test_app_secondobject__old";
+DROP TABLE "test_app_secondobject__old";
+COMMIT;

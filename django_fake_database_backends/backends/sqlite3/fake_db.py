@@ -1,6 +1,3 @@
-from .operations import DatabaseOperations
-
-
 class Cursor(object):
     def execute(self, *args, **kwargs):
         pass
@@ -11,17 +8,19 @@ class Cursor(object):
     def fetchmany(self, *args, **kwargs):
         return []
 
+    def fetchall(self, *args, **kwargs):
+        return []
+
 
 class DatabaseConnection(object):
-    data_type_check_constraints = {}
-    in_atomic_block = False
-    alias = 'default'
-
-    def __init__(self, *args, **kwargs):
-        self.ops = DatabaseOperations(self)
-
     def close(self):
         pass
 
     def cursor(self):
         return Cursor()
+
+    def commit(self):
+        pass
+
+    def rollback(self):
+        pass
