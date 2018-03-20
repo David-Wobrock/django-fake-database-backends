@@ -1,4 +1,5 @@
-from django.db.backends.sqlite3.base import DatabaseWrapper as BaseDatabaseWrapper
+from django.db.backends.sqlite3.base import DatabaseWrapper \
+    as BaseDatabaseWrapper
 
 from .client import DatabaseClient
 from .creation import DatabaseCreation
