@@ -1,35 +1,25 @@
-import unittest
+from tests.utils import order_insert_statements
 from tests.testcases import FakeBackendsTestCase
 
 
 class Sqlite3Test(FakeBackendsTestCase):
     database_backend = 'sqlite3'
 
-    def _execute_sqlmigrate(self, *args, **kwargs):
-        sqlmigrate_sql = super(Sqlite3Test, self)._execute_sqlmigrate(*args, **kwargs)
-        possible_sqls = set()
-        possible_sqls.add(sqlmigrate_sql)
-        # TODO generate changes
-        # For each INSERT INTO statement
-        # match what is in brackets
-        # Split between comma ,
-        # Insert all combinations
-        # insert at both places
-        return list(possible_sqls)
-
     def assert_sql(self, migration_num, app_name='test_app'):
         expected_sql = self._expected_sql(migration_num)
-        fake_backend_sqls = self._execute_sqlmigrate(app_name, migration_num)
+        fake_backend_sql = self._execute_sqlmigrate(app_name, migration_num)
 
-        expected_sql = ''.join(expected_sql).replace('\n', '')
-        for i, sql in enumerate(fake_backend_sqls):
-            fake_backend_sql[i] = ''.join(sql).replace('\n', '')
+        # Since the order of the fields in the INSERT INTO statement
+        #  when using the sqlite3 backend is not deterministic, we test them
+        #  by ordering the fields in a determistic manner (alphabetically)
+        expected_sql = ''.join(order_insert_statements(expected_sql)).replace('\n', '')
+        fake_backend_sql = ''.join(order_insert_statements(fake_backend_sql)).replace('\n', '')
         print('*** Expected output ***')
         print(expected_sql)
         print('*** Gotten outputs ***')
-        print(fake_backend_sqls)
+        print(fake_backend_sql)
 
-        self.assertTrue(expected_sql in fake_backend_sqls)
+        self.assertEqual(expected_sql, fake_backend_sql)
 
     def test_fake_backend_create_table_0001(self):
         app_name = 'test_app'
