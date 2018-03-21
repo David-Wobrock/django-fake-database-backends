@@ -1,7 +1,0 @@
-BEGIN;
---
--- Add field attachments to secondobject
---
-ALTER TABLE `test_app_secondobject` ADD COLUMN `attachments` varchar(100) NULL;
-ALTER TABLE `test_app_secondobject` ALTER COLUMN `attachments` DROP DEFAULT;
-COMMIT;

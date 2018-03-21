@@ -1,0 +1,13 @@
+BEGIN;
+--
+-- Add field one2one to firstobject
+--
+ALTER TABLE "test_app_firstobject" RENAME TO "test_app_firstobject__old";
+CREATE TABLE "test_app_firstobject" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "one2one_id" integer NULL REFERENCES "test_app_secondobject" ("id"), "name" integer NOT NULL, "obj_id" integer NULL REFERENCES "test_app_secondobject" ("id"), "fk_set_null_id" integer NULL REFERENCES "test_app_secondobject" ("id"), "fk_do_nothing_id" integer NULL REFERENCES "test_app_secondobject" ("id"), "fk_protect_id" integer NULL REFERENCES "test_app_firstobject" ("id"));
+INSERT INTO "test_app_firstobject" ("name", "fk_set_null_id", "fk_do_nothing_id", "obj_id", "fk_protect_id", "one2one_id", "id") SELECT "name", "fk_set_null_id", "fk_do_nothing_id", "obj_id", "fk_protect_id", NULL, "id" FROM "test_app_firstobject__old";
+DROP TABLE "test_app_firstobject__old";
+CREATE INDEX "test_app_firstobject_one2one_id_488f7249" ON "test_app_firstobject" ("one2one_id");
+CREATE INDEX "test_app_firstobject_fk_set_null_id_cacfeedb" ON "test_app_firstobject" ("fk_set_null_id");
+CREATE INDEX "test_app_firstobject_fk_do_nothing_id_d2ffa8f3" ON "test_app_firstobject" ("fk_do_nothing_id");
+CREATE INDEX "test_app_firstobject_fk_protect_id_45d8a322" ON "test_app_firstobject" ("fk_protect_id");
+COMMIT;

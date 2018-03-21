@@ -1,0 +1,9 @@
+BEGIN;
+--
+-- Add field many2many to secondobject
+--
+CREATE TABLE "test_app_secondobject_many2many" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "secondobject_id" integer NOT NULL REFERENCES "test_app_secondobject" ("id"), "firstobject_id" integer NOT NULL REFERENCES "test_app_firstobject" ("id"));
+CREATE UNIQUE INDEX "test_app_secondobject_many2many_secondobject_id_firstobject_id_f5cb5110_uniq" ON "test_app_secondobject_many2many" ("secondobject_id", "firstobject_id");
+CREATE INDEX "test_app_secondobject_many2many_secondobject_id_4f3f51fb" ON "test_app_secondobject_many2many" ("secondobject_id");
+CREATE INDEX "test_app_secondobject_many2many_firstobject_id_faf3bb65" ON "test_app_secondobject_many2many" ("firstobject_id");
+COMMIT;

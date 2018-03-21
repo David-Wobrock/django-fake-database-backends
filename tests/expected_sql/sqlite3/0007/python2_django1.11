@@ -1,0 +1,9 @@
+BEGIN;
+--
+-- Add field binary to secondobject
+--
+ALTER TABLE "test_app_secondobject" RENAME TO "test_app_secondobject__old";
+CREATE TABLE "test_app_secondobject" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "binary" BLOB NULL, "big_int" bigint NULL);
+INSERT INTO "test_app_secondobject" ("binary", "big_int", "id") SELECT NULL, "big_int", "id" FROM "test_app_secondobject__old";
+DROP TABLE "test_app_secondobject__old";
+COMMIT;
