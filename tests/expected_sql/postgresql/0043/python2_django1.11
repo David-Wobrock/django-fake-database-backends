@@ -1,0 +1,8 @@
+BEGIN;
+--
+-- Add field fk_protect to firstobject
+--
+ALTER TABLE "test_app_firstobject" ADD COLUMN "fk_protect_id" integer NULL;
+CREATE INDEX "test_app_firstobject_fk_protect_id_45d8a322" ON "test_app_firstobject" ("fk_protect_id");
+ALTER TABLE "test_app_firstobject" ADD CONSTRAINT "test_app_firstobject_fk_protect_id_45d8a322_fk_test_app_" FOREIGN KEY ("fk_protect_id") REFERENCES "test_app_firstobject" ("id") DEFERRABLE INITIALLY DEFERRED;
+COMMIT;

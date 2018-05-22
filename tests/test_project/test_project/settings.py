@@ -83,7 +83,10 @@ DATABASES = {
     },
     'sqlite3': {
         'ENGINE': 'django_fake_database_backends.backends.sqlite3',
-    }
+    },
+    'postgresql': {
+        'ENGINE': 'django_fake_database_backends.backends.postgresql',
+    },
 }
 
 

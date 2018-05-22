@@ -44,6 +44,7 @@ Available backends
 
 * ``django_fake_database_backends.backends.mysql``
 * ``django_fake_database_backends.backends.sqlite3``
+* ``django_fake_database_backends.backends.postgresql``
 
 More will come in the future.
 

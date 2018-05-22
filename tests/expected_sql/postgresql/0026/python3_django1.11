@@ -1,0 +1,6 @@
+BEGIN;
+--
+-- Add field url to secondobject
+--
+ALTER TABLE "test_app_secondobject" ADD COLUMN "url" varchar(200) NULL;
+COMMIT;

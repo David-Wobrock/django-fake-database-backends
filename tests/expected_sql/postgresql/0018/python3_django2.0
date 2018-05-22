@@ -1,0 +1,6 @@
+BEGIN;
+--
+-- Add field generic_ip to secondobject
+--
+ALTER TABLE "test_app_secondobject" ADD COLUMN "generic_ip" inet NULL;
+COMMIT;

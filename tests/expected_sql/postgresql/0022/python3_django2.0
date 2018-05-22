@@ -1,0 +1,8 @@
+BEGIN;
+--
+-- Add field slug to secondobject
+--
+ALTER TABLE "test_app_secondobject" ADD COLUMN "slug" varchar(50) NULL;
+CREATE INDEX "test_app_secondobject_slug_57e38659" ON "test_app_secondobject" ("slug");
+CREATE INDEX "test_app_secondobject_slug_57e38659_like" ON "test_app_secondobject" ("slug" varchar_pattern_ops);
+COMMIT;

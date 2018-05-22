@@ -1,0 +1,6 @@
+BEGIN;
+--
+-- Add field big_int to secondobject
+--
+ALTER TABLE "test_app_secondobject" ADD COLUMN "big_int" bigint NULL;
+COMMIT;

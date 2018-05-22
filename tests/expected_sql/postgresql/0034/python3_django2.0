@@ -1,0 +1,6 @@
+BEGIN;
+--
+-- Alter field filepath on secondobject
+--
+DROP INDEX IF EXISTS "test_app_secondobject_filepath_3fd2243d_like";
+COMMIT;
