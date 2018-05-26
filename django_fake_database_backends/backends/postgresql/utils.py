@@ -22,5 +22,19 @@ class Inet(object):
         return str(self.addr)
 
 
+from datetime import date, time
+
 def quote_postgre(value):
-    return '"{0}"'.format(value)
+    if type(value) == bool:
+        return str(value).lower()
+    if type(value) == date:
+        return "'{}'::date".format(value)
+    if type(value) == time:
+        return "'{}'::time".format(value)
+    if '@' in str(value):
+        return "'{}'".format(value)
+    if type(value) == int or type(value) == float:
+        if value < 0:  # Why exactly?
+            return ' {}'.format(value)
+        return value
+    return "'{}'".format(value)
