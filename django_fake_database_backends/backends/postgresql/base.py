@@ -1,9 +1,9 @@
 from django.db.backends.base.base import BaseDatabaseWrapper
+from django.db.backends.postgresql.client import DatabaseClient
+from django.db.backends.postgresql.features import DatabaseFeatures
+from django.db.backends.postgresql.introspection import DatabaseIntrospection
 
-from .client import DatabaseClient
 from .creation import DatabaseCreation
-from .features import DatabaseFeatures
-from .introspection import DatabaseIntrospection
 from .operations import DatabaseOperations
 from .schema import DatabaseSchemaEditor
 from django_fake_database_backends.common import DatabaseConnection, Cursor
@@ -12,6 +12,14 @@ from django_fake_database_backends.common import DatabaseConnection, Cursor
 class DatabaseWrapper(BaseDatabaseWrapper):
     vendor = 'fake-postgresql-database-backend'
     display_name = 'Django Fake PostgreSQL Database Backend'
+
+    SchemaEditorClass = DatabaseSchemaEditor
+
+    client_class = DatabaseClient
+    creation_class = DatabaseCreation
+    features_class = DatabaseFeatures
+    introspection_class = DatabaseIntrospection
+    ops_class = DatabaseOperations
 
     data_types = {
         'AutoField': 'serial',
@@ -60,14 +68,6 @@ class DatabaseWrapper(BaseDatabaseWrapper):
         'istartswith': 'LIKE UPPER(%s)',
         'iendswith': 'LIKE UPPER(%s)',
     }
-
-    SchemaEditorClass = DatabaseSchemaEditor
-
-    client_class = DatabaseClient
-    creation_class = DatabaseCreation
-    features_class = DatabaseFeatures
-    introspection_class = DatabaseIntrospection
-    ops_class = DatabaseOperations
 
     def get_connection_params(self):
         pass
