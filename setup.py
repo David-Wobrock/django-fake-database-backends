@@ -20,7 +20,7 @@ test_requirements = (
 
 setup(
     name='django-fake-database-backends',
-    version='0.0.4',
+    version='0.1.0',
 
     description='Fake django database backends to generate sql without a real database',
     long_description=long_description,
@@ -37,9 +37,10 @@ setup(
 
     keywords='django database backend sqlmigrate',
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'Environment :: Web Environment',
+        'Topic :: Database',
         'Framework :: Django',
         'Framework :: Django :: 1.11',
         'Framework :: Django :: 2.0',
