@@ -2,12 +2,12 @@ from django.db.backends.base.base import BaseDatabaseWrapper
 
 from .client import DatabaseClient
 from .creation import DatabaseCreation
-from .fake_db import DatabaseConnection, Cursor
 from .features import DatabaseFeatures
 from .introspection import DatabaseIntrospection
 from .operations import DatabaseOperations
 from .schema import DatabaseSchemaEditor
 from .validation import DatabaseValidation
+from django_fake_database_backends.common import DatabaseConnection, Cursor
 
 
 class DatabaseWrapper(BaseDatabaseWrapper):
@@ -36,7 +36,8 @@ class DatabaseWrapper(BaseDatabaseWrapper):
         return {}
 
     def get_new_connection(self, *args, **kwargs):
-        return DatabaseConnection()
+        return DatabaseConnection(
+            ops_class=DatabaseOperations)
 
     def _set_autocommit(self, *args, **kwargs):
         pass

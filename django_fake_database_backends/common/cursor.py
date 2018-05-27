@@ -12,20 +12,3 @@ class Cursor(object):
 
     def fetchall(self, *args, **kwargs):
         return []
-
-
-class DatabaseConnection(object):
-    def close(self):
-        pass
-
-    def cursor(self):
-        return Cursor()
-
-    def commit(self):
-        pass
-
-    def rollback(self):
-        pass
-
-    def set_client_encoding(self, encoding):
-        pass
