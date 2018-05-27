@@ -1,6 +1,14 @@
 sudo: false
 language: python
 
+services:
+  - mysql
+  - postgresql
+
+before_script:
+  - mysql -e 'CREATE DATABASE fake_db;'
+  - psql -c 'create database fake_db;' -U postgres
+
 matrix:
   include:
     - python: 2.7

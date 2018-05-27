@@ -7,6 +7,9 @@ class Cursor(object):
     def close(self, *args, **kwargs):
         pass
 
+    def fetchone(self, *args, **kwargs):
+        return None
+
     def fetchmany(self, *args, **kwargs):
         return []
 

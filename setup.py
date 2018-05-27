@@ -15,7 +15,9 @@ install_requirements = [
 test_requirements = (
     'pytest',
     'tox',
-    'pillow'
+    'pillow',
+    'mysqlclient',
+    'psycopg2',
 )
 
 setup(

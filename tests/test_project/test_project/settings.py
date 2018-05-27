@@ -87,6 +87,22 @@ DATABASES = {
     'postgresql': {
         'ENGINE': 'django_fake_database_backends.backends.postgresql',
     },
+    'mysql_real': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'fake_db',
+        'USER': 'root',
+        'PASSWORD': '',
+    },
+    'sqlite3_real': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db.sqlite3',
+    },
+    'postgresql_real': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'fake_db',
+        'USER': 'postgres',
+        'PASSWORD': '',
+    },
 }
 
 
