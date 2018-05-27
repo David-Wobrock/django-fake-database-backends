@@ -1,9 +1,7 @@
 class Cursor(object):
     def execute(self, query, vars=None):
         # http://initd.org/psycopg/docs/cursor.html#cursor.query
-        # TODO save the query into self.query
         self.query = query.encode('utf-8')
-        #print(self.query)
         return None
 
     def close(self, *args, **kwargs):

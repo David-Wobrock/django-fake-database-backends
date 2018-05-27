@@ -1,7 +1,7 @@
 from tests.testcases import FakeBackendsTestCase
 
 
-class MySqlTest(FakeBackendsTestCase):
+class MySQLTest(FakeBackendsTestCase):
     database_backend = 'mysql'
 
     def test_fake_backend_create_table_0001(self):

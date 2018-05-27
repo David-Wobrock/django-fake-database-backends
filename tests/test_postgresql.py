@@ -1,7 +1,7 @@
 from tests.testcases import FakeBackendsTestCase
 
 
-class PostgreSqlTest(FakeBackendsTestCase):
+class PostgreSQLTest(FakeBackendsTestCase):
     database_backend = 'postgresql'
 
     def test_fake_backend_create_table_0001(self):

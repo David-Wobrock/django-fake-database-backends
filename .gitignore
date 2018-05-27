@@ -6,3 +6,5 @@ build/
 dist/
 .tox/
 .cache/
+*.pytest_cache/
+venv*/

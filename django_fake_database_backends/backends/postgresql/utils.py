@@ -1,6 +1,8 @@
 # Hard copy from psycopg2
+from datetime import date, time
 
 error_codes_DUPLICATE_DATABASE = '42P04'
+
 
 class Inet(object):
     def __init__(self, addr):
@@ -21,8 +23,6 @@ class Inet(object):
     def __str__(self):
         return str(self.addr)
 
-
-from datetime import date, time
 
 def quote_postgre(value):
     if type(value) == bool:

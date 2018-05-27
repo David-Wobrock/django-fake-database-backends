@@ -2,7 +2,7 @@ from tests.utils import order_insert_statements
 from tests.testcases import FakeBackendsTestCase
 
 
-class Sqlite3Test(FakeBackendsTestCase):
+class SQLite3Test(FakeBackendsTestCase):
     database_backend = 'sqlite3'
 
     def assert_sql(self, migration_num, app_name='test_app'):
