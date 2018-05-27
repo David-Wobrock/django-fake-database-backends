@@ -1,7 +1,8 @@
-from django.db.backends.mysql.schema import DatabaseSchemaEditor \
-    as BaseDatabaseSchemaEditor
 import datetime
 import sys
+
+from django.db.backends.mysql.schema import DatabaseSchemaEditor \
+    as BaseDatabaseSchemaEditor
 
 
 class DatabaseSchemaEditor(BaseDatabaseSchemaEditor):

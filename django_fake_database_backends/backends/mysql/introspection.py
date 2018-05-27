@@ -1,7 +1,9 @@
 import django
+
 from django.db.backends.base.introspection import BaseDatabaseIntrospection
 from django.db.models import ForeignKey
-from django_fake_database_backends.backends.utils import split_identifier
+
+from .utils import split_identifier
 
 
 class DatabaseIntrospection(BaseDatabaseIntrospection):

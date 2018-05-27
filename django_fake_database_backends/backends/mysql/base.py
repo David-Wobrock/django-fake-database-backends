@@ -1,12 +1,12 @@
 from django.db.backends.base.base import BaseDatabaseWrapper
+from django.db.backends.mysql.client import DatabaseClient
+from django.db.backends.mysql.creation import DatabaseCreation
+from django.db.backends.mysql.validation import DatabaseValidation
 
-from .client import DatabaseClient
-from .creation import DatabaseCreation
 from .features import DatabaseFeatures
 from .introspection import DatabaseIntrospection
 from .operations import DatabaseOperations
 from .schema import DatabaseSchemaEditor
-from .validation import DatabaseValidation
 from django_fake_database_backends.common import DatabaseConnection, Cursor
 
 
@@ -22,31 +22,6 @@ class DatabaseWrapper(BaseDatabaseWrapper):
     introspection_class = DatabaseIntrospection
     ops_class = DatabaseOperations
     validation_class = DatabaseValidation
-
-    def __init__(self, *args, **kwargs):
-        super(DatabaseWrapper, self).__init__(*args, **kwargs)
-        self.client = self.client_class(self)
-        self.creation = self.creation_class(self)
-        self.features = self.features_class(self)
-        self.introspection = self.introspection_class(self)
-        self.ops = self.ops_class(self)
-        self.validation = self.validation_class(self)
-
-    def get_connection_params(self, *args, **kwargs):
-        return {}
-
-    def get_new_connection(self, *args, **kwargs):
-        return DatabaseConnection(
-            ops_class=DatabaseOperations)
-
-    def _set_autocommit(self, *args, **kwargs):
-        pass
-
-    def init_connection_state(self, *args, **kwargs):
-        pass
-
-    def create_cursor(self, name=None):
-        return Cursor()
 
     data_types = {
         'AutoField': 'integer AUTO_INCREMENT',
@@ -80,3 +55,19 @@ class DatabaseWrapper(BaseDatabaseWrapper):
         'tinyblob', 'blob', 'mediumblob', 'longblob', 'tinytext', 'text',
         'mediumtext', 'longtext', 'json',
     )
+
+    def get_connection_params(self, *args, **kwargs):
+        return {}
+
+    def get_new_connection(self, *args, **kwargs):
+        return DatabaseConnection(
+            ops_class=DatabaseOperations)
+
+    def _set_autocommit(self, *args, **kwargs):
+        pass
+
+    def init_connection_state(self, *args, **kwargs):
+        pass
+
+    def create_cursor(self, name=None):
+        return Cursor()
