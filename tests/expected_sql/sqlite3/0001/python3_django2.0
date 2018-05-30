@@ -1,6 +1,0 @@
-BEGIN;
---
--- Create model FirstObject
---
-CREATE TABLE "test_app_firstobject" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT);
-COMMIT;

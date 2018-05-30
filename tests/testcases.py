@@ -15,7 +15,6 @@ class FakeBackendsTestCase(unittest.TestCase):
     """
 
     TEST_PROJECT_DIR = os.path.join(BASE_DIR, 'test_project/')
-    EXPECTED_SQL_DIR = os.path.join(BASE_DIR, 'expected_sql')
 
     database_backend = 'TODO'
 
@@ -40,21 +39,21 @@ class FakeBackendsTestCase(unittest.TestCase):
             stdout=subprocess.PIPE)
         process.wait()
 
-    def _expected_sql(self, app_name, migration_num):
-        sqlmigrate_cmd = '(cd {0} && {1} manage.py sqlmigrate {2} {3} --database {4}_real)'.format(
-            self.TEST_PROJECT_DIR, self.python_exec, app_name, migration_num, self.database_backend)
+    def real_sql(self, app_name, migration_num):
+        return self._execute_sqlmigrate(
+            app_name,
+            migration_num,
+            '{}_real'.format(self.database_backend))
 
-        process = subprocess.Popen(
-            sqlmigrate_cmd,
-            shell=True,
-            stdout=subprocess.PIPE)
-        process.wait()
+    def fake_sql(self, app_name, migration_num):
+        return self._execute_sqlmigrate(
+            app_name,
+            migration_num,
+            self.database_backend)
 
-        return map(lambda x: x.decode('utf-8'), process.stdout.readlines())
-
-    def _execute_sqlmigrate(self, app_name, migration_num):
+    def _execute_sqlmigrate(self, app_name, migration_num, database_alias):
         sqlmigrate_cmd = '(cd {0} && {1} manage.py sqlmigrate {2} {3} --database {4})'.format(
-            self.TEST_PROJECT_DIR, self.python_exec, app_name, migration_num, self.database_backend)
+            self.TEST_PROJECT_DIR, self.python_exec, app_name, migration_num, database_alias)
 
         process = subprocess.Popen(
             sqlmigrate_cmd,
@@ -65,8 +64,8 @@ class FakeBackendsTestCase(unittest.TestCase):
         return map(lambda x: x.decode('utf-8'), process.stdout.readlines())
 
     def assert_sql(self, migration_num, app_name='test_app'):
-        expected_sql = self._expected_sql(app_name, migration_num)
-        fake_backend_sql = self._execute_sqlmigrate(app_name, migration_num)
+        expected_sql = self.real_sql(app_name, migration_num)
+        fake_backend_sql = self.fake_sql(app_name, migration_num)
 
         expected_sql = ''.join(expected_sql).replace('\n', '')
         fake_backend_sql = ''.join(fake_backend_sql).replace('\n',  '')

@@ -1,9 +1,0 @@
-BEGIN;
---
--- Add field dec to secondobject
---
-ALTER TABLE "test_app_secondobject" RENAME TO "test_app_secondobject__old";
-CREATE TABLE "test_app_secondobject" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "dec" decimal NULL, "big_int" bigint NULL, "binary" BLOB NULL, "boolean" bool NOT NULL, "characters" varchar(512) NULL, "current_date" date NOT NULL, "datetime_f" datetime NULL);
-INSERT INTO "test_app_secondobject" ("dec", "big_int", "id", "current_date", "characters", "binary", "boolean", "datetime_f") SELECT NULL, "big_int", "id", "current_date", "characters", "binary", "boolean", "datetime_f" FROM "test_app_secondobject__old";
-DROP TABLE "test_app_secondobject__old";
-COMMIT;

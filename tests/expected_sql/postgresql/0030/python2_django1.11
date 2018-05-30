@@ -1,6 +1,0 @@
-BEGIN;
---
--- Alter field mail on secondobject
---
-ALTER TABLE "test_app_secondobject" RENAME COLUMN "mail" TO "email_address";
-COMMIT;

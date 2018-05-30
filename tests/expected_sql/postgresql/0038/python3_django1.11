@@ -1,6 +1,0 @@
-BEGIN;
---
--- Rename model ThirdObject to OtherObject
---
-ALTER TABLE "test_app_thirdobject" RENAME TO "test_app_otherobject";
-COMMIT;

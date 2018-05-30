@@ -1,6 +1,0 @@
-BEGIN;
---
--- Alter field name on firstobject
---
-ALTER TABLE "test_app_firstobject" ALTER COLUMN "name" TYPE integer USING "name"::integer;
-COMMIT;

@@ -1,9 +1,0 @@
-BEGIN;
---
--- Add field many2many to secondobject
---
-CREATE TABLE `test_app_secondobject_many2many` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `secondobject_id` integer NOT NULL, `firstobject_id` integer NOT NULL);
-ALTER TABLE `test_app_secondobject_many2many` ADD CONSTRAINT `test_app_secondobjec_secondobject_id_4f3f51fb_fk_test_app_` FOREIGN KEY (`secondobject_id`) REFERENCES `test_app_secondobject` (`id`);
-ALTER TABLE `test_app_secondobject_many2many` ADD CONSTRAINT `test_app_secondobjec_firstobject_id_faf3bb65_fk_test_app_` FOREIGN KEY (`firstobject_id`) REFERENCES `test_app_firstobject` (`id`);
-ALTER TABLE `test_app_secondobject_many2many` ADD CONSTRAINT `test_app_secondobject_ma_secondobject_id_firstobj_f5cb5110_uniq` UNIQUE (`secondobject_id`, `firstobject_id`);
-COMMIT;

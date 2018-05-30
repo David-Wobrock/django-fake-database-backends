@@ -1,9 +1,0 @@
-BEGIN;
---
--- Alter field name on firstobject
---
-ALTER TABLE "test_app_firstobject" RENAME TO "test_app_firstobject__old";
-CREATE TABLE "test_app_firstobject" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" integer NOT NULL);
-INSERT INTO "test_app_firstobject" ("id", "name") SELECT "id", "name" FROM "test_app_firstobject__old";
-DROP TABLE "test_app_firstobject__old";
-COMMIT;

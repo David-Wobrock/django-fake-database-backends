@@ -1,9 +1,0 @@
-BEGIN;
---
--- Add field filepath to secondobject
---
-ALTER TABLE "test_app_secondobject" RENAME TO "test_app_secondobject__old";
-CREATE TABLE "test_app_secondobject" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "filepath" varchar(100) NULL, "big_int" bigint NULL, "binary" BLOB NULL, "boolean" bool NOT NULL, "characters" varchar(512) NULL, "current_date" date NOT NULL, "datetime_f" datetime NULL, "dec" decimal NULL, "elapsed" bigint NULL, "mail" varchar(254) NOT NULL, "attachments" varchar(100) NULL);
-INSERT INTO "test_app_secondobject" ("binary", "big_int", "attachments", "filepath", "datetime_f", "elapsed", "current_date", "boolean", "characters", "mail", "dec", "id") SELECT "binary", "big_int", "attachments", NULL, "datetime_f", "elapsed", "current_date", "boolean", "characters", "mail", "dec", "id" FROM "test_app_secondobject__old";
-DROP TABLE "test_app_secondobject__old";
-COMMIT;

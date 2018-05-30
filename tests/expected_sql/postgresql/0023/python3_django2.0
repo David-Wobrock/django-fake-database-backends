@@ -1,7 +1,0 @@
-BEGIN;
---
--- Add field small_int to secondobject
---
-ALTER TABLE "test_app_secondobject" ADD COLUMN "small_int" smallint DEFAULT  -54 NOT NULL;
-ALTER TABLE "test_app_secondobject" ALTER COLUMN "small_int" DROP DEFAULT;
-COMMIT;

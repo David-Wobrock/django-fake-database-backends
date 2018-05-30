@@ -1,9 +1,0 @@
-BEGIN;
---
--- Add field current_date to secondobject
---
-ALTER TABLE "test_app_secondobject" RENAME TO "test_app_secondobject__old";
-CREATE TABLE "test_app_secondobject" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "current_date" date NOT NULL, "big_int" bigint NULL, "binary" BLOB NULL, "boolean" bool NOT NULL, "characters" varchar(512) NULL);
-INSERT INTO "test_app_secondobject" ("binary", "current_date", "characters", "id", "big_int", "boolean") SELECT "binary", '2018-01-21', "characters", "id", "big_int", "boolean" FROM "test_app_secondobject__old";
-DROP TABLE "test_app_secondobject__old";
-COMMIT;

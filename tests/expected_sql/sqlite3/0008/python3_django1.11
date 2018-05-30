@@ -1,9 +1,0 @@
-BEGIN;
---
--- Add field boolean to secondobject
---
-ALTER TABLE "test_app_secondobject" RENAME TO "test_app_secondobject__old";
-CREATE TABLE "test_app_secondobject" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "boolean" bool NOT NULL, "big_int" bigint NULL, "binary" BLOB NULL);
-INSERT INTO "test_app_secondobject" ("boolean", "id", "big_int", "binary") SELECT 0, "id", "big_int", "binary" FROM "test_app_secondobject__old";
-DROP TABLE "test_app_secondobject__old";
-COMMIT;

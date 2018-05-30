@@ -1,9 +1,0 @@
-BEGIN;
---
--- Add field big_int to secondobject
---
-ALTER TABLE "test_app_secondobject" RENAME TO "test_app_secondobject__old";
-CREATE TABLE "test_app_secondobject" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "big_int" bigint NULL);
-INSERT INTO "test_app_secondobject" ("id", "big_int") SELECT "id", NULL FROM "test_app_secondobject__old";
-DROP TABLE "test_app_secondobject__old";
-COMMIT;

@@ -1,9 +1,0 @@
-BEGIN;
---
--- Rename field other_id on otherobject to renamed_id
---
-ALTER TABLE "test_app_otherobject" RENAME TO "test_app_otherobject__old";
-CREATE TABLE "test_app_otherobject" ("renamed_id" integer NOT NULL PRIMARY KEY);
-INSERT INTO "test_app_otherobject" ("renamed_id") SELECT "other_id" FROM "test_app_otherobject__old";
-DROP TABLE "test_app_otherobject__old";
-COMMIT;

@@ -1,6 +1,0 @@
-BEGIN;
---
--- Alter unique_together for secondobject (1 constraint(s))
---
-CREATE UNIQUE INDEX "test_app_secondobject_big_int_floating_125c9d83_uniq" ON "test_app_secondobject" ("big_int", "floating");
-COMMIT;

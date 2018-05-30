@@ -1,5 +1,0 @@
-BEGIN;
---
--- Alter field obj on firstobject
---
-COMMIT;

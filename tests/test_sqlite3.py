@@ -6,8 +6,8 @@ class SQLite3Test(FakeBackendsTestCase):
     database_backend = 'sqlite3'
 
     def assert_sql(self, migration_num, app_name='test_app'):
-        expected_sql = self._expected_sql(app_name, migration_num)
-        fake_backend_sql = self._execute_sqlmigrate(app_name, migration_num)
+        expected_sql = self.real_sql(app_name, migration_num)
+        fake_backend_sql = self.fake_sql(app_name, migration_num)
 
         # Since the order of the fields in the INSERT INTO statement
         #  when using the sqlite3 backend is not deterministic, we test them
