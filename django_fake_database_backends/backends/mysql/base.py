@@ -30,7 +30,7 @@ class DatabaseWrapper(BaseDatabaseWrapper):
         'CharField': 'varchar(%(max_length)s)',
         'CommaSeparatedIntegerField': 'varchar(%(max_length)s)',
         'DateField': 'date',
-        'DateTimeField': 'datetime',
+        'DateTimeField': 'datetime(6)',
         'DecimalField': 'numeric(%(max_digits)s, %(decimal_places)s)',
         'DurationField': 'bigint',
         'FileField': 'varchar(%(max_length)s)',
@@ -47,7 +47,7 @@ class DatabaseWrapper(BaseDatabaseWrapper):
         'SlugField': 'varchar(%(max_length)s)',
         'SmallIntegerField': 'smallint',
         'TextField': 'longtext',
-        'TimeField': 'time',
+        'TimeField': 'time(6)',
         'UUIDField': 'char(32)'
     }
 
