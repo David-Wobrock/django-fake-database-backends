@@ -17,7 +17,7 @@ test_requirements = (
     'tox',
     'pillow',
     'mysqlclient',
-    'psycopg2',
+    'psycopg2-binary',
 )
 
 setup(
