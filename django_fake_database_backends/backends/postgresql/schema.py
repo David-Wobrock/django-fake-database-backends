@@ -6,9 +6,8 @@ from django_fake_database_backends.common.schema import (
 from .utils import quote_postgre
 
 
-class DatabaseSchemaEditor(
-        BaseDatabaseSchemaEditor,
-        DatabaseSchemaEditorMixin):
+class DatabaseSchemaEditor(DatabaseSchemaEditorMixin,
+                           BaseDatabaseSchemaEditor):
 
     sql_alter_column_type = ("ALTER COLUMN %(column)s "
                              "TYPE %(type)s USING %(column)s::%(type)s")

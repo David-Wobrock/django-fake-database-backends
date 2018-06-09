@@ -9,9 +9,8 @@ from django_fake_database_backends.common.schema import (
 )
 
 
-class DatabaseSchemaEditor(
-        BaseDatabaseSchemaEditor,
-        DatabaseSchemaEditorMixin):
+class DatabaseSchemaEditor(DatabaseSchemaEditorMixin,
+                           BaseDatabaseSchemaEditor):
     def execute(self, sql, params=()):
         sql = str(sql)
         if self.collect_sql:

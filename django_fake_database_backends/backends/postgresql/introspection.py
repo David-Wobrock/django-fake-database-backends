@@ -6,7 +6,6 @@ from django_fake_database_backends.common.introspection import (
 )
 
 
-class DatabaseIntrospection(
-        BaseDatabaseIntrospection,
-        DatabaseIntrospectionMixin):
+class DatabaseIntrospection(DatabaseIntrospectionMixin,
+                            BaseDatabaseIntrospection):
     pass
