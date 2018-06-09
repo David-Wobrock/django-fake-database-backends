@@ -1,9 +1,9 @@
 from django.db.backends.base.base import BaseDatabaseWrapper
 from django.db.backends.postgresql.client import DatabaseClient
 from django.db.backends.postgresql.features import DatabaseFeatures
-from django.db.backends.postgresql.introspection import DatabaseIntrospection
 
 from .creation import DatabaseCreation
+from .introspection import DatabaseIntrospection
 from .operations import DatabaseOperations
 from .schema import DatabaseSchemaEditor
 from django_fake_database_backends.common import DatabaseConnection, Cursor
