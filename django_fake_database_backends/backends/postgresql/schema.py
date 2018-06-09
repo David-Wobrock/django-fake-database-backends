@@ -1,11 +1,14 @@
-import django
 from django.db.backends.base.schema import BaseDatabaseSchemaEditor
 
-from django_fake_database_backends.common.schema import DatabaseSchemaEditorMixin
+from django_fake_database_backends.common.schema import (
+    DatabaseSchemaEditorMixin,
+)
 from .utils import quote_postgre
 
 
-class DatabaseSchemaEditor(BaseDatabaseSchemaEditor, DatabaseSchemaEditorMixin):
+class DatabaseSchemaEditor(
+        BaseDatabaseSchemaEditor,
+        DatabaseSchemaEditorMixin):
 
     sql_alter_column_type = ("ALTER COLUMN %(column)s "
                              "TYPE %(type)s USING %(column)s::%(type)s")

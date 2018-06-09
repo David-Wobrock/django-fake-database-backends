@@ -60,6 +60,7 @@ class FakeBackendsTestCase(unittest.TestCase):
             shell=True,
             stdout=subprocess.PIPE)
         process.wait()
+        self.assertEquals(process.returncode, 0)
 
         return map(lambda x: x.decode('utf-8'), process.stdout.readlines())
 

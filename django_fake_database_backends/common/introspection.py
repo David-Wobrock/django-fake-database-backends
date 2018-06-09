@@ -1,10 +1,14 @@
+import django
+from django.db.models import ForeignKey
+
+from .utils import split_identifier
+
+
 class DatabaseIntrospectionMixin(object):
     def get_constraints(self, model):
         """ Does not connect to any DB,
         instead, compute constraints that should exist"""
         # TODO
-        print(model)
-        print(type(model))
         constraints = {}
         for field in model._meta.get_fields():
             is_pk = field.primary_key

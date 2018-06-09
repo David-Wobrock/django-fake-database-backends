@@ -4,10 +4,14 @@ import sys
 from django.db.backends.mysql.schema import DatabaseSchemaEditor \
     as BaseDatabaseSchemaEditor
 
-from django_fake_database_backends.common.schema import DatabaseSchemaEditorMixin
+from django_fake_database_backends.common.schema import (
+    DatabaseSchemaEditorMixin,
+)
 
 
-class DatabaseSchemaEditor(BaseDatabaseSchemaEditor, DatabaseSchemaEditorMixin):
+class DatabaseSchemaEditor(
+        BaseDatabaseSchemaEditor,
+        DatabaseSchemaEditorMixin):
     def execute(self, sql, params=()):
         sql = str(sql)
         if self.collect_sql:
