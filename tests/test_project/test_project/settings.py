@@ -78,13 +78,13 @@ DATABASES = {
     'default': {
         'ENGINE': 'django_fake_database_backends.backends.mysql',
     },
-    'mysql': {
+    'mysql_fake': {
         'ENGINE': 'django_fake_database_backends.backends.mysql',
     },
-    'sqlite3': {
+    'sqlite3_fake': {
         'ENGINE': 'django_fake_database_backends.backends.sqlite3',
     },
-    'postgresql': {
+    'postgresql_fake': {
         'ENGINE': 'django_fake_database_backends.backends.postgresql',
     },
     'mysql_real': {

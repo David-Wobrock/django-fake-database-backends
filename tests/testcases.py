@@ -49,7 +49,7 @@ class FakeBackendsTestCase(unittest.TestCase):
         return self._execute_sqlmigrate(
             app_name,
             migration_num,
-            self.database_backend)
+            '{}_fake'.format(self.database_backend))
 
     def _execute_sqlmigrate(self, app_name, migration_num, database_alias):
         sqlmigrate_cmd = '(cd {0} && {1} manage.py sqlmigrate {2} {3} --database {4})'.format(
