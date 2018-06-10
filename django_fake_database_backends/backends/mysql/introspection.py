@@ -34,8 +34,7 @@ class DatabaseIntrospection(BaseDatabaseIntrospection):
                     field.target_field.column) if is_fk else ''
                 constraint_name = \
                     self.connection.schema_editor()._create_index_name(
-                        model._meta.db_table if
-                        is_django_1() else model,
+                        model if is_django_1() else model._meta.db_table,
                         columns,
                         suffix)
 

@@ -1,9 +1,9 @@
 from django.db.backends.base.base import BaseDatabaseWrapper
+from django.db.backends.base.features import BaseDatabaseFeatures
 from django.db.backends.mysql.client import DatabaseClient
 from django.db.backends.mysql.creation import DatabaseCreation
 from django.db.backends.mysql.validation import DatabaseValidation
 
-from .features import DatabaseFeatures
 from .introspection import DatabaseIntrospection
 from .operations import DatabaseOperations
 from .schema import DatabaseSchemaEditor
@@ -18,7 +18,7 @@ class DatabaseWrapper(BaseDatabaseWrapper):
 
     client_class = DatabaseClient
     creation_class = DatabaseCreation
-    features_class = DatabaseFeatures
+    features_class = BaseDatabaseFeatures
     introspection_class = DatabaseIntrospection
     ops_class = DatabaseOperations
     validation_class = DatabaseValidation
