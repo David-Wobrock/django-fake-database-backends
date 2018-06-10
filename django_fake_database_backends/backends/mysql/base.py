@@ -4,13 +4,13 @@ from django.db.backends.mysql.client import DatabaseClient
 from django.db.backends.mysql.creation import DatabaseCreation
 from django.db.backends.mysql.validation import DatabaseValidation
 
+from django_fake_database_backends.common.base import DatabaseWrapperMixin
 from .introspection import DatabaseIntrospection
 from .operations import DatabaseOperations
 from .schema import DatabaseSchemaEditor
-from django_fake_database_backends.common import DatabaseConnection, Cursor
 
 
-class DatabaseWrapper(BaseDatabaseWrapper):
+class DatabaseWrapper(DatabaseWrapperMixin, BaseDatabaseWrapper):
     vendor = 'fake-mysql-database-backend'
     display_name = 'Django Fake MySql Database Backend'
 
@@ -55,19 +55,3 @@ class DatabaseWrapper(BaseDatabaseWrapper):
         'tinyblob', 'blob', 'mediumblob', 'longblob', 'tinytext', 'text',
         'mediumtext', 'longtext', 'json',
     )
-
-    def get_connection_params(self, *args, **kwargs):
-        return {}
-
-    def get_new_connection(self, *args, **kwargs):
-        return DatabaseConnection(
-            ops_class=DatabaseOperations)
-
-    def _set_autocommit(self, *args, **kwargs):
-        pass
-
-    def init_connection_state(self, *args, **kwargs):
-        pass
-
-    def create_cursor(self, name=None):
-        return Cursor()
