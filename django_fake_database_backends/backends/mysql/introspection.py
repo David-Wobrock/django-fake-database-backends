@@ -1,10 +1,12 @@
-import django
 from django.db.backends.base.introspection import (
     BaseDatabaseIntrospection,
 )
 from django.db.models import ForeignKey
 
-from django_fake_database_backends.common.utils import split_identifier
+from django_fake_database_backends.common.utils import (
+    split_identifier,
+    is_django_1,
+)
 
 
 class DatabaseIntrospection(BaseDatabaseIntrospection):
@@ -33,7 +35,7 @@ class DatabaseIntrospection(BaseDatabaseIntrospection):
                 constraint_name = \
                     self.connection.schema_editor()._create_index_name(
                         model._meta.db_table if
-                        django.VERSION[0] != 1 else model,
+                        is_django_1() else model,
                         columns,
                         suffix)
 

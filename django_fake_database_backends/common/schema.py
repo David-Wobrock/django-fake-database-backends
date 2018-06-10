@@ -1,4 +1,4 @@
-import django
+from .utils import is_django_2, is_string
 
 
 class DatabaseSchemaEditorMixin(object):
@@ -34,8 +34,7 @@ class DatabaseSchemaEditorMixin(object):
         return result
 
     def _create_index_name(self, model_or_table_name, *args, **kwargs):
-        if (django.VERSION[0] == 2 and
-                not isinstance(model_or_table_name, str)):
+        if is_django_2() and not is_string(model_or_table_name):
             model_or_table_name = model_or_table_name._meta.db_table
         return super(DatabaseSchemaEditorMixin, self)._create_index_name(
             model_or_table_name, *args, **kwargs)

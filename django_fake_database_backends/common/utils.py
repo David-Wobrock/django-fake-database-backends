@@ -1,3 +1,6 @@
+import django
+
+
 def split_identifier(identifier):
     """
     Split a SQL identifier into a two element tuple of (namespace, name).
@@ -14,3 +17,22 @@ def split_identifier(identifier):
         except ValueError:
             namespace, name = '', identifier
         return namespace.strip('"'), name.strip('"')
+
+
+def is_django_2():
+    return django.VERSION[0] == 2
+
+
+def is_django_1():
+    return django.VERSION[0] == 1
+
+
+def is_string(obj):
+    if isinstance(obj, str):
+        return True
+
+    try:
+        return isinstance(obj, unicode)
+    except NameError:  # Python3
+        return isinstance(obj, bytes)
+    return False

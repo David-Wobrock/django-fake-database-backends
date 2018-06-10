@@ -1,4 +1,3 @@
-import django
 from django.db.backends.base.introspection import (
     BaseDatabaseIntrospection,
 )
@@ -29,8 +28,7 @@ class DatabaseIntrospection(BaseDatabaseIntrospection):
                     field.target_field.column) if is_fk else ''
                 constraint_name = \
                     self.connection.schema_editor()._create_index_name(
-                        model._meta.db_table if
-                        django.VERSION[0] != 1 else model,
+                        model,
                         columns,
                         suffix)
 

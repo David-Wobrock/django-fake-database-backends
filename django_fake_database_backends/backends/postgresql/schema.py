@@ -1,8 +1,12 @@
-import django
 from django.db.backends.base.schema import BaseDatabaseSchemaEditor
 
 from django_fake_database_backends.common.schema import (
     DatabaseSchemaEditorMixin,
+)
+from django_fake_database_backends.common.utils import (
+    is_django_1,
+    is_django_2,
+    is_string,
 )
 from .utils import quote_postgre
 
@@ -77,7 +81,7 @@ class DatabaseSchemaEditor(DatabaseSchemaEditorMixin,
     def _alter_column_type_sql(
             self, model_or_table, old_field, new_field, new_type):
         """Make ALTER TYPE with SERIAL make sense."""
-        if django.VERSION[0] == 2 and isinstance(model_or_table, str):
+        if is_django_2() and is_string(model_or_table):
             model_or_table = model_or_table._meta.db_table
             table = model_or_table._meta.db_table
         else:
@@ -134,7 +138,7 @@ class DatabaseSchemaEditor(DatabaseSchemaEditorMixin,
 
     def _alter_field(self, model, old_field, new_field, old_type, new_type,
                      old_db_params, new_db_params, strict=False):
-        if django.VERSION[0] == 1:
+        if is_django_1():
             super(DatabaseSchemaEditor, self)._alter_field(
                 model, old_field, new_field, old_type, new_type, old_db_params,
                 new_db_params, strict,
