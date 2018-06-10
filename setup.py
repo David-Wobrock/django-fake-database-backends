@@ -22,7 +22,7 @@ test_requirements = (
 
 setup(
     name='django-fake-database-backends',
-    version='0.1.0',
+    version='0.1.1',
 
     description='Fake django database backends to generate sql without a real database',
     long_description=long_description,
