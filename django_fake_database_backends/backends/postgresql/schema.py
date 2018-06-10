@@ -36,7 +36,8 @@ class DatabaseSchemaEditor(DatabaseSchemaEditorMixin,
         return quote_postgre(value)
 
     def _field_indexes_sql(self, model, field):
-        output = super(DatabaseSchemaEditor, self)._field_indexes_sql(model, field)
+        output = super(DatabaseSchemaEditor, self)._field_indexes_sql(
+            model, field)
         like_index_statement = self._create_like_index_sql(model, field)
         if like_index_statement is not None:
             output.append(like_index_statement)
@@ -59,9 +60,17 @@ class DatabaseSchemaEditor(DatabaseSchemaEditorMixin,
             if '[' in db_type:
                 return None
             if db_type.startswith('varchar'):
-                return self._create_index_sql(model, [field], suffix='_like', sql=self.sql_create_varchar_index)
+                return self._create_index_sql(
+                    model,
+                    [field],
+                    suffix='_like',
+                    sql=self.sql_create_varchar_index)
             elif db_type.startswith('text'):
-                return self._create_index_sql(model, [field], suffix='_like', sql=self.sql_create_text_index)
+                return self._create_index_sql(
+                    model,
+                    [field],
+                    suffix='_like',
+                    sql=self.sql_create_text_index)
         return None
 
     def _alter_column_type_sql(self, model, old_field, new_field, new_type):
@@ -97,7 +106,8 @@ class DatabaseSchemaEditor(DatabaseSchemaEditorMixin,
                             "table": self.quote_name(table),
                             "changes": self.sql_alter_column_default % {
                                 "column": self.quote_name(column),
-                                "default": "nextval('%s')" % self.quote_name(sequence_name),
+                                "default": "nextval('%s')" % self.quote_name(
+                                    sequence_name),
                             }
                         },
                         [],
@@ -113,32 +123,42 @@ class DatabaseSchemaEditor(DatabaseSchemaEditorMixin,
                 ],
             )
         else:
-            return super(DatabaseSchemaEditor, self)._alter_column_type_sql(model, old_field, new_field, new_type)
+            return super(DatabaseSchemaEditor, self)._alter_column_type_sql(
+                model, old_field, new_field, new_type)
 
     def _alter_field(self, model, old_field, new_field, old_type, new_type,
                      old_db_params, new_db_params, strict=False):
         # Drop indexes on varchar/text/citext columns that are changing to a
         # different type.
         if (old_field.db_index or old_field.unique) and (
-            (old_type.startswith('varchar') and not new_type.startswith('varchar')) or
-            (old_type.startswith('text') and not new_type.startswith('text')) or
-            (old_type.startswith('citext') and not new_type.startswith('citext'))
+            (old_type.startswith('varchar') and not
+                new_type.startswith('varchar')) or
+            (old_type.startswith('text') and
+                not new_type.startswith('text')) or
+            (old_type.startswith('citext') and
+                not new_type.startswith('citext'))
         ):
-            index_name = self._create_index_name(model, [old_field.column], suffix='_like')
-            self.execute(self._delete_constraint_sql(self.sql_delete_index, model, index_name))
+            index_name = self._create_index_name(
+                model, [old_field.column], suffix='_like')
+            self.execute(self._delete_constraint_sql(
+                self.sql_delete_index, model, index_name))
 
         super(DatabaseSchemaEditor, self)._alter_field(
             model, old_field, new_field, old_type, new_type, old_db_params,
             new_db_params, strict,
         )
         # Added an index? Create any PostgreSQL-specific indexes.
-        if ((not (old_field.db_index or old_field.unique) and new_field.db_index) or
+        if ((not (old_field.db_index or old_field.unique)
+             and new_field.db_index) or
                 (not old_field.unique and new_field.unique)):
-            like_index_statement = self._create_like_index_sql(model, new_field)
+            like_index_statement = self._create_like_index_sql(
+                model, new_field)
             if like_index_statement is not None:
                 self.execute(like_index_statement)
 
         # Removed an index? Drop any PostgreSQL-specific indexes.
         if old_field.unique and not (new_field.db_index or new_field.unique):
-            index_to_remove = self._create_index_name(model, [old_field.column], suffix='_like')
-            self.execute(self._delete_constraint_sql(self.sql_delete_index, model, index_to_remove))
+            index_to_remove = self._create_index_name(
+                model, [old_field.column], suffix='_like')
+            self.execute(self._delete_constraint_sql(
+                self.sql_delete_index, model, index_to_remove))

@@ -34,7 +34,8 @@ class DatabaseSchemaEditorMixin(object):
         return result
 
     def _create_index_name(self, model_or_table_name, *args, **kwargs):
-        if django.VERSION[0] == 2 and isinstance(model_or_table_name, basestring):
+        if (django.VERSION[0] == 2 and
+                isinstance(model_or_table_name, basestring)):
             model_or_table_name = model_or_table_name._meta.db_table
         return super(DatabaseSchemaEditorMixin, self)._create_index_name(
             model_or_table_name, *args, **kwargs)
