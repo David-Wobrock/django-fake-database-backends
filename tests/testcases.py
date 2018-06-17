@@ -15,23 +15,20 @@ class FakeBackendsTestCase(unittest.TestCase):
     """
 
     TEST_PROJECT_DIR = os.path.join(BASE_DIR, 'test_project/')
+    PYTHON_EXEC = '{0}/bin/python'.format(sys.prefix) if hasattr(sys, 'real_prefix') else 'python'
 
     database_backend = 'TODO'
 
     @classmethod
     def setUpClass(cls):
         super(FakeBackendsTestCase, cls).setUpClass()
-        cls.python_exec = '{0}/bin/python'.format(sys.prefix) if hasattr(sys, 'real_prefix') else 'python'
-        cls.python_version = sys.version_info.major
-        import django
-        cls.django_version = '{0}.{1}'.format(*(django.VERSION[:2]))
         cls.django_migrate('mysql_real')
         cls.django_migrate('postgresql_real')
 
     @classmethod
     def django_migrate(cls, database_alias):
         migrate_cmd = '(cd {0} && {1} manage.py migrate --database {2} --no-input)'.format(
-            cls.TEST_PROJECT_DIR, cls.python_exec, database_alias)
+            cls.TEST_PROJECT_DIR, cls.PYTHON_EXEC, database_alias)
 
         process = subprocess.Popen(
             migrate_cmd,
@@ -53,7 +50,7 @@ class FakeBackendsTestCase(unittest.TestCase):
 
     def _execute_sqlmigrate(self, app_name, migration_num, database_alias):
         sqlmigrate_cmd = '(cd {0} && {1} manage.py sqlmigrate {2} {3} --database {4})'.format(
-            self.TEST_PROJECT_DIR, self.python_exec, app_name, migration_num, database_alias)
+            self.TEST_PROJECT_DIR, self.PYTHON_EXEC, app_name, migration_num, database_alias)
 
         process = subprocess.Popen(
             sqlmigrate_cmd,
